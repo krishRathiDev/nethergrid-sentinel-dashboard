@@ -5,8 +5,8 @@ Team: **Lone Nova** · Theme: **Digital Futures — AI & Futuristic Tech (Cybers
 
 A real-time cybersecurity command dashboard built for the fictional universe **NetherGrid** — a living digital dimension under attack from a self-replicating rogue AI known as **The Breach**. You play the **Guardian**, the lone operator responsible for keeping the network alive.
 
-🔗 **Live Demo:** _add your deployed link here_
-📁 **Repo:** _add your GitHub repo link here_
+🔗 **Live Demo:** [lovely-mermaid-5d8b7c.netlify.app](https://lovely-mermaid-5d8b7c.netlify.app)
+📁 **Repo:** [github.com/krishRathiDev/nethergrid-sentinel-dashboard](https://github.com/krishRathiDev/nethergrid-sentinel-dashboard)
 
 ---
 
@@ -62,30 +62,3 @@ npx serve .
 1. `npm i -g vercel` then run `vercel` inside this folder, or drag-and-drop the folder at [vercel.com/new](https://vercel.com/new)
 
 ## Project structure
-
-```
-sentinel-dashboard/
-├── index.html      # markup / structure
-├── styles.css      # design system + layout + animation styles
-├── script.js       # network simulation, state, rendering, interactions
-└── README.md
-```
-
-## Extending it (Evolution Challenge ready)
-
-`script.js` exposes a small public API on `window.NetherGrid` so a late-breaking twist can be wired in fast without touching the rest of the app:
-
-```js
-NetherGrid.getNodes();                     // read current node states
-NetherGrid.setNodeStatus("n3", "breach");  // force a node into a status
-NetherGrid.pushAlert("critical", "...");   // inject a new alert
-NetherGrid.showToast("...", 4000);         // show a system-wide banner message
-```
-
-Whatever the surprise challenge turns out to be, wire it in through this API first — it keeps the diff small and the demo stable.
-
-## Story reference (from Round 1)
-
-- **Universe:** NetherGrid — data packets are citizens, servers are cities, firewalls are borders.
-- **Mission:** Operation Sentinel Restore — rebuild network defense and contain The Breach.
-- **Primary user:** The Guardian — sole operator of the Sentinel Dashboard.
