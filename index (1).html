@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NetherGrid — Sentinel Command Center</title>
+<meta name="description" content="A real-time cybersecurity command dashboard for the NetherGrid universe — built for Stellar Hack." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ BOOT SEQUENCE OVERLAY ============ -->
+<div id="boot-screen" aria-hidden="true">
+  <div class="boot-lines" id="boot-lines"></div>
+  <button id="skip-boot" class="skip-btn">Skip Intro →</button>
+</div>
+
+<!-- ============ MAIN APP ============ -->
+<div id="app" class="app hidden">
+
+  <!-- Background grid -->
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-brand">
+      <span class="brand-mark" aria-hidden="true">◈</span>
+      <div class="brand-text">
+        <span class="brand-name">NETHERGRID</span>
+        <span class="brand-sub">Sentinel Command Center</span>
+      </div>
+    </div>
+
+    <div class="header-integrity">
+      <span class="integrity-label">GRID INTEGRITY</span>
+      <div class="integrity-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="integrity-bar">
+        <div class="integrity-fill" id="integrity-fill"></div>
+      </div>
+      <span class="integrity-value" id="integrity-value">100%</span>
+    </div>
+
+    <div class="header-clock">
+      <span class="clock-label">MISSION CLOCK</span>
+      <span class="clock-value" id="mission-clock">00:00:00</span>
+    </div>
+  </header>
+
+  <!-- MAIN GRID: alerts / network map / actions -->
+  <main class="main-grid">
+
+    <!-- LEFT: ALERTS PANEL -->
+    <section class="panel alerts-panel" aria-label="Threat alerts">
+      <div class="panel-head">
+        <h2>Alerts</h2>
+        <span class="panel-count" id="alert-count">0</span>
+      </div>
+      <div class="alerts-list" id="alerts-list">
+        <!-- alerts injected here -->
+      </div>
+    </section>
+
+    <!-- CENTER: NETWORK MAP -->
+    <section class="panel map-panel" aria-label="Network map">
+      <div class="panel-head">
+        <h2>Network Map</h2>
+        <div class="legend">
+          <span class="legend-item"><i class="dot dot-secure"></i>Secure</span>
+          <span class="legend-item"><i class="dot dot-risk"></i>At Risk</span>
+          <span class="legend-item"><i class="dot dot-breach"></i>Compromised</span>
+        </div>
+      </div>
+      <div class="map-canvas-wrap">
+        <svg id="network-svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+    </section>
+
+    <!-- RIGHT: NODE DETAIL / ACTIONS -->
+    <section class="panel actions-panel" aria-label="Node detail and controls">
+      <div class="panel-head">
+        <h2>Control Panel</h2>
+      </div>
+
+      <div id="node-empty" class="node-empty">
+        <p>Select a node on the Network Map to inspect its status and take action.</p>
+      </div>
+
+      <div id="node-detail" class="node-detail hidden">
+        <div class="node-detail-head">
+          <span class="node-detail-name" id="detail-name">Node —</span>
+          <span class="node-detail-status" id="detail-status">Secure</span>
+        </div>
+        <p class="node-detail-desc" id="detail-desc">No anomalies detected on this node.</p>
+
+        <div class="node-actions">
+          <button class="action-btn action-isolate" id="btn-isolate">
+            <span class="action-icon">⛒</span> Isolate Node
+          </button>
+          <button class="action-btn action-patch" id="btn-patch">
+            <span class="action-icon">⟳</span> Deploy Patch
+          </button>
+          <button class="action-btn action-neutralize" id="btn-neutralize">
+            <span class="action-icon">✕</span> Neutralize Threat
+          </button>
+        </div>
+
+        <div class="action-feedback" id="action-feedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER: STATS -->
+  <footer class="footer">
+    <div class="stat">
+      <span class="stat-label">Nodes Secured</span>
+      <span class="stat-value stat-secure" id="stat-secure">0</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">At Risk</span>
+      <span class="stat-value stat-risk" id="stat-risk">0</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Compromised</span>
+      <span class="stat-value stat-breach" id="stat-breach">0</span>
+    </div>
+    <div class="stat stat-graph">
+      <span class="stat-label">Breach Spread Rate</span>
+      <svg id="spread-graph" viewBox="0 0 220 40" preserveAspectRatio="none"></svg>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Toast for Evolution Challenge / system messages -->
+<div id="toast" class="toast" aria-live="assertive"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
